@@ -40,7 +40,7 @@ const onFormSubmit = event => {
       const galleryMarkup = data.hits.map(createGalleryMarkup).join('');
       gallery.innerHTML = galleryMarkup;
 
-      let galleryLibrary = new SimpleLightbox('.gallery li', {
+      let galleryLibrary = new SimpleLightbox('.gallery li a', {
         captions: true,
         captionsData: 'alt',
         captionDelay: 250,
