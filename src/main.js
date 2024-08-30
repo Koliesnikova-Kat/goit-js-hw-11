@@ -40,23 +40,26 @@ const onFormSubmit = event => {
       const galleryMarkup = data.hits.map(createGalleryMarkup).join('');
       gallery.innerHTML = galleryMarkup;
 
-      let galleryLibrary = new SimpleLightbox('.gallery li a', {
-        captions: true,
-        captionsData: 'alt',
-        captionDelay: 250,
-        overlayOpacity: 0.8,
-        captionsPosition: 'bottom'
-      });
-
       galleryLibrary.refresh();
     })
     .catch(err => {
-      console.log(err);
+      iziToast.error({
+        message: `${err}`,
+        position: 'topRight',
+      });
     })
     .finally(() => {
       loader.classList.add('is-hidden');
       form.reset();
     });;
 }
+
+let galleryLibrary = new SimpleLightbox('.gallery li a', {
+  captions: true,
+  captionsData: 'alt',
+  captionDelay: 250,
+  overlayOpacity: 0.8,
+  captionsPosition: 'bottom'
+});
 
 form.addEventListener('submit', onFormSubmit);
